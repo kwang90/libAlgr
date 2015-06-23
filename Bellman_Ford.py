@@ -16,3 +16,4 @@ def bellman_ford(G,s):
 					return False
 	
 	return True
+	

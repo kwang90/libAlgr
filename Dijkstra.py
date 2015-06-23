@@ -14,3 +14,4 @@ def dijkstra(G, s):
 			relaxation(G,minNode,n)
 			
 	return path
+	
