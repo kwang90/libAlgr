@@ -1,7 +1,7 @@
 '''
    ================== General Graph Definition ===================
 '''
-INFINATE = 10000
+INFINITE = 10000
 
 #Graph definition
 class Graph:	
@@ -31,7 +31,7 @@ class Node:
 	def __init__(self, tag):
 		self.tag = tag
 		self.parent = None
-		self.distance = INFINATE
+		self.distance = INFINITE
 
 '''============================================================'''
 		
@@ -41,7 +41,7 @@ class Node:
 #Initialization
 def initSingleSrc(G, nodeO):
 	for n in G.allNodes():
-		n.distance = INFINATE
+		n.distance = INFINITE
 		n.parent = None
 	nodeO.distance = 0
 	
