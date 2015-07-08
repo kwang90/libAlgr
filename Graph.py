@@ -3,7 +3,14 @@
 '''
 INFINITE = 10000
 
-#Graph definition
+
+def printGraphDic(G):
+	for k,v in G.graphDic.items():
+		print('======>')
+		for n, c in v.items():
+			print('......', k.tag,n.tag,c)
+
+#Basic Graph definition
 class Graph:	
 	'''an example of the adjacency list of a weighted graph
 		e.g.: graph = {'n1':{'n2':3,
@@ -25,6 +32,20 @@ class Graph:
 	
 	def allNodes(self):
 		return list(self.graphDic.keys())
+		
+#Graph for DCLC problems
+class GraphDCLC(Graph):
+	'''an example of the adjacency list of a DCLC graph
+		e.g.: graph = {'n1':{'n2':{'cost':2, 'delay':3}}
+							'n3':{'cost':3, 'delay':2}}},
+					  'n2':{'n1':{'cost':4, 'delay':1},
+							'n3':{'cost':5, 'delay':1}}},
+					  'n3':{'n1':{'cost':3, 'delay':2},
+							'n2':{'cost':2, 'delay':5}}}}
+	'''	
+	# def __init__(self, graphDCLC):
+		# self.graphDic = graphDCLC		
+	
 
 #Node definition
 class Node:
@@ -33,30 +54,9 @@ class Node:
 		self.parent = None
 		self.distance = INFINITE
 
-'''============================================================'''
-		
-'''
-   ================= Single Source Shortest Path =================
-'''
-#Initialization
-def initSingleSrc(G, nodeO):
-	for n in G.allNodes():
-		n.distance = INFINITE
-		n.parent = None
-	nodeO.distance = 0
-	
-#Relaxation
-def relaxation(G, n1, n2):
-	if n2.distance > (n1.distance + G.getWeight(n1, n2)):
-		n2.distance = n1.distance + G.getWeight(n1, n2)
-		n2.parent = n1
-
-#Min node in List
-def extractMin(nodeQ):
-	if nodeQ is None:
-		return None
-	else: 
-		nodeQ.sort(key = lambda n:n.distance)
-		return nodeQ.pop(0)
-		
+#Path definition
+class Path:
+	def __init__(self, p):
+		self.path = p
+		self.cost = 0
 '''============================================================'''
