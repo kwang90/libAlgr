@@ -33,12 +33,11 @@ def bellman_ford(G,s):
 #Dijkstra Single Pair
 def dijkstra_pair(G, s, dest):
 	initSingleSrc(G, s)	
-	
 	nodes = G.allNodes()
-	
+
 	while nodes != []:
 		minNode = extractMin(nodes)
-		
+
 		print('minNode : ',minNode.tag)
 		
 		if minNode.tag == dest.tag:

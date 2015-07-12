@@ -6,16 +6,17 @@ from copy import *
 
 #Graph Transformation
 def toGraph(graphDclc, lambda_delay):
-	G = Graph(deepcopy(graphDclc.graphDic))
+	dic = {}
+	G = Graph(dic)
 	
-	for k,v in G.graphDic.items():
+	for k,v in graphDclc.graphDic.items():
 		for n, metrics in v.items():
 			if lambda_delay is INFINITE:
 				# metric is only delay
-				v[n] = metrics['delay']
+				dic[k] = {n : metrics['delay']}
 			else:
 				# metric is the combination of cost and delay
-				v[n] = metrics['cost'] + lambda_delay * metrics['delay']
+				dic[k] = {n : metrics['cost'] + lambda_delay * metrics['delay']}
 	return G
 
 #LARAC
