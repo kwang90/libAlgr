@@ -38,8 +38,6 @@ def dijkstra_pair(G, s, dest):
 	while nodes != []:
 		minNode = extractMin(nodes)
 
-		print('minNode : ',minNode.tag)
-		
 		if minNode.tag == dest.tag:
 			path = [dest]
 			pre = dest
@@ -51,7 +49,6 @@ def dijkstra_pair(G, s, dest):
 			return p
 		for n in G.graphDic[minNode]:
 			relaxation(G,minNode,n)
-			print('relaxation : ', minNode.tag, n.tag, n.distance)
 	return None
 
 #LamdaCost of a path
@@ -68,7 +65,6 @@ def pathCostDelay_dclc(graph_dclc, p):
 	delay = 0 
 	for it in reversed(p.path):
 		if it.parent != None:
-			cost = 0
 			cost = cost + graph_dclc.graphDic[it][it.parent]['cost']
 			delay = delay + graph_dclc.graphDic[it][it.parent]['delay']
 	return (cost, delay)
@@ -84,7 +80,7 @@ def initSingleSrc(G, nodeO):
 	
 #Relaxation
 def relaxation(G, n1, n2):
-	if n2.distance > (n1.distance + G.getWeight(n1, n2)):
+	if n2.distance > (n1.distance + G.getWeight(n1, n2)) and n1.parent != n2:
 		n2.distance = n1.distance + G.getWeight(n1, n2)
 		n2.parent = n1
 
@@ -97,4 +93,3 @@ def extractMin(nodeQ):
 		return nodeQ.pop(0)
 		
 '''============================================================'''
-

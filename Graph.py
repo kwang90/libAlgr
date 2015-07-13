@@ -2,8 +2,14 @@
    ================== General Graph Definition ===================
 '''
 INFINITE = 10000
-
-
+def printPaths(pathStack):
+	print("---> path: ")
+	for p in pathStack:
+		if p.parent is None:
+			print(p.tag, p.distance)
+		else:
+			print(p.tag, p.distance, p.parent.tag)
+			
 def printGraphDic(G):
 	for k,v in G.graphDic.items():
 		print('======>')

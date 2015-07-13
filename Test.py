@@ -9,15 +9,7 @@ def printResult(algrName,aGraph):
 		if n.parent is None:
 			print (n.tag, n.distance, n.parent)
 		else: 
-			print (n.tag, n.distance, n.parent.tag)
-
-def printPaths(pathStack):
-	print("---> path: ")
-	for p in pathStack:
-		if p.parent is None:
-			print(p.tag, p.distance)
-		else:
-			print(p.tag, p.distance, p.parent.tag) 
+			print (n.tag, n.distance, n.parent.tag) 
 
 
 #Initialization
@@ -58,12 +50,12 @@ b = Node('B')
 c = Node('C')
 d = Node('D')
 
-graph3 = {  a:{	b:{'cost':1, 'delay':4}, d:{'cost':16, 'delay':2 }},#c:{'cost':4, 'delay':3}, 
+graph3 = {  a:{	b:{'cost':1, 'delay':4}, d:{'cost':16, 'delay':2 },c:{'cost':4, 'delay':3}}, 
 			b:{	a:{'cost':1, 'delay':4}, c:{'cost':2, 'delay':1}, d:{'cost':1, 'delay':8 }},
-			c:{ b:{'cost':2, 'delay':1}, d:{'cost':4, 'delay':3 }},#a:{'cost':4, 'delay':3},
+			c:{ b:{'cost':2, 'delay':1}, d:{'cost':4, 'delay':3 },a:{'cost':4, 'delay':3}},
 			d:{	a:{'cost':16, 'delay':2}, b:{'cost':1, 'delay':8}, c:{'cost':4, 'delay':3 }}}			
 G3 = GraphDCLC(graph3)
 
 #LARAC testing
-p = algr_LARAC(G3, a, c, 10)
+p = algr_LARAC(G3, a, c, 4)
 printPaths(p.path)
