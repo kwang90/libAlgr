@@ -30,8 +30,6 @@ def algr_LARAC(G_dclc, src, dest, delay_constrain):
 		return pathC
 		
 	pathD = dijkstra_pair(toGraph(G_dclc, INFINITE), src, dest)
-	print('path d : ')
-	printPaths(pathD.path)
 
 	if pathCostDelay_dclc(G_dclc, pathD)[1] > delay_constrain:
 		print("No solution")
@@ -39,11 +37,16 @@ def algr_LARAC(G_dclc, src, dest, delay_constrain):
 		
 	while True:
 		print('*************************** new loop ********************')
+		print(pathCostDelay_dclc(G_dclc, pathC),pathCostDelay_dclc(G_dclc, pathD))
 		lam = (pathCostDelay_dclc(G_dclc, pathC)[0] - pathCostDelay_dclc(G_dclc, pathD)[0])/(pathCostDelay_dclc(G_dclc, pathD)[1] - pathCostDelay_dclc(G_dclc, pathC)[1])
+		graphLam = toGraph(G_dclc, lam)
 		r = dijkstra_pair(graphLam, src, dest)
-		printGraphDic(G_dclc)
-		print(pathCostDelay_dclc(G_dclc, pathC), pathCostDelay_dclc(G_dclc, pathD), 'lamda : ',lam)
 		printPaths(r.path)
+		print('Change?????')
+		printPaths(pathC.path)
+		printPaths(pathD.path)
+		print(pathCostDelay_dclc(G_dclc, pathC), pathCostDelay_dclc(G_dclc, pathD), 'lamda : ',lam)
+		
 		if pathCost(graphLam, r) == pathCost(graphLam, pathC):
 			print("solution found")
 			return pathD
